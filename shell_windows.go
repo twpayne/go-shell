@@ -5,10 +5,9 @@ package shell
 import (
 	"errors"
 	"os"
-	"os/user"
 )
 
-func UserShell(u *user.User) (string, error) {
+func CurrentUserShell() (string, error) {
 	comSpecEnv := os.Getenv("ComSpec")
 	if comSpecEnv == "" {
 		return "", errors.New("Could not find shell")
