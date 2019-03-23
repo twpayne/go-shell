@@ -9,9 +9,9 @@ import (
 )
 
 func UserShell(u *user.User) (string, error) {
-	ComSpecEnv := os.Getenv("ComSpec")
-	if ComSpecEnv == "" {
+	comSpecEnv := os.Getenv("ComSpec")
+	if comSpecEnv == "" {
 		return "", errors.New("Could not find shell")
 	}
-	return ComSpecEnv, nil
+	return comSpecEnv, nil
 }
