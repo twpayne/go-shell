@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// UserShell returns u's shell.
 func UserShell(u *user.User) (string, error) {
 	output, err := exec.Command("getent", "passwd", u.Username).Output()
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// CurrentUserShell returns the current user's shell.
 func CurrentUserShell() (string, error) {
 	comSpecEnv := os.Getenv("ComSpec")
 	if comSpecEnv == "" {

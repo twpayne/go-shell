@@ -10,6 +10,7 @@ import (
 
 var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`)
 
+// UserShell returns u's shell.
 func UserShell(u *user.User) (string, error) {
 	output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output()
 	if err != nil {
