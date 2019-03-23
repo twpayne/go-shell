@@ -11,7 +11,7 @@ import (
 func CurrentUserShell() (string, error) {
 	comSpecEnv := os.Getenv("ComSpec")
 	if comSpecEnv == "" {
-		return "", errors.New("Could not find shell")
+		return "", errors.New("could not find shell")
 	}
 	return comSpecEnv, nil
 }
