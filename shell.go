@@ -1,4 +1,5 @@
 // Package shell returns a user's shell across multiple platforms.
+
 // +build !windows
 
 package shell
