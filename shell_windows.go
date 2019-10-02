@@ -3,15 +3,18 @@
 package shell
 
 import (
-	"errors"
 	"os"
 )
 
+const defaultShell = "PowerShell.exe"
+
 // CurrentUserShell returns the current user's shell.
-func CurrentUserShell() (string, error) {
-	comSpecEnv := os.Getenv("ComSpec")
-	if comSpecEnv == "" {
-		return "", errors.New("could not find shell")
+func CurrentUserShell() (string, bool) {
+	// If the ComSpec environment variable is set, use it.
+	if comSpec := os.Getenv("ComSpec"); comSpec != "" {
+		return comSpec, true
 	}
-	return comSpecEnv, nil
+
+	// Fallback to the default shell.
+	return defaultShell, false
 }

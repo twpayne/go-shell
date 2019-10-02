@@ -5,22 +5,15 @@
 package shell
 
 import (
-	"fmt"
 	"os/user"
 )
 
-type parseError []byte
-
-func (pe parseError) Error() string {
-	return fmt.Sprintf("shell: cannot parse %q", pe)
-}
-
 // CurrentUserShell is a convenience function that returns the current user's
 // shell.
-func CurrentUserShell() (string, error) {
+func CurrentUserShell() (string, bool) {
 	currentUser, err := user.Current()
 	if err != nil {
-		return "", err
+		return defaultShell, false
 	}
 	return UserShell(currentUser)
 }

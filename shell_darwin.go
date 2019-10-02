@@ -3,22 +3,30 @@
 package shell
 
 import (
+	"os"
 	"os/exec"
 	"os/user"
 	"regexp"
 )
 
+const defaultShell = "/bin/bash"
+
 var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`)
 
 // UserShell returns u's shell.
-func UserShell(u *user.User) (string, error) {
-	output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output()
-	if err != nil {
-		return "", err
+func UserShell(u *user.User) (string, bool) {
+	// If dscl is available, use it.
+	if output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output(); err != nil {
+		if m := dsclUserShellRegexp.FindSubmatch(output); m != nil {
+			return string(m[1]), true
+		}
 	}
-	m := dsclUserShellRegexp.FindSubmatch(output)
-	if m == nil {
-		return "", parseError(output)
+
+	// If the SHELL environment variable is set, use it.
+	if shell, ok := os.LookupEnv("SHELL"); ok {
+		return shell, true
 	}
-	return string(m[1]), nil
+
+	// Fallback to the default shell.
+	return defaultShell, false
 }
