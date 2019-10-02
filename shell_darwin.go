@@ -15,6 +15,11 @@ var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`)
 
 // UserShell returns u's shell.
 func UserShell(u *user.User) (string, bool) {
+	// If getpwnam_r is available, use it.
+	if shell, ok := cgoGetUserShell(u.Username); ok {
+		return shell, true
+	}
+
 	// If dscl is available, use it.
 	if output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output(); err != nil {
 		if m := dsclUserShellRegexp.FindSubmatch(output); m != nil {

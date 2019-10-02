@@ -14,6 +14,11 @@ const defaultShell = "/bin/sh"
 
 // UserShell returns u's shell.
 func UserShell(u *user.User) (string, bool) {
+	// If getpwnam_r is available, use it.
+	if shell, ok := cgoGetUserShell(u.Username); ok {
+		return shell, true
+	}
+
 	// If getent is available, use it.
 	if getent, err := exec.LookPath("getent"); err == nil {
 		if output, err := exec.Command(getent, "passwd", u.Username).Output(); err == nil {
