@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const defaultShell = "PowerShell.exe"
+const defaultShell = "powershell.exe"
 
 // CurrentUserShell returns the current user's shell.
 func CurrentUserShell() (string, bool) {
