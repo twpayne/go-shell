@@ -10,6 +10,7 @@ import (
 func main() {
 	currentUserShell, ok := shell.CurrentUserShell()
 	fmt.Println(currentUserShell)
+
 	if !ok {
 		os.Exit(1)
 	}

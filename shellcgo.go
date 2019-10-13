@@ -18,6 +18,7 @@ func cgoGetUserShell(name string) (string, bool) {
 	if buflen == -1 {
 		buflen = 1024
 	}
+
 	for {
 		var (
 			cName  = C.CString(name)
@@ -28,6 +29,7 @@ func cgoGetUserShell(name string) (string, bool) {
 		//nolint:gocritic,staticcheck
 		rc := C.getpwnam_r(cName, &pwd, (*C.char)(unsafe.Pointer(&buf[0])), C.ulong(buflen), &result)
 		C.free(unsafe.Pointer(cName))
+
 		switch rc {
 		case 0:
 			return C.GoString(result.pw_shell), true

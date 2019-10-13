@@ -32,12 +32,14 @@ func CurrentUserShell() (string, bool) {
 		// If the user has an entry in /etc/passwd, use it.
 		if f, err := os.Open("/etc/passwd"); err == nil {
 			defer f.Close()
+
 			s := bufio.NewScanner(f)
 			for s.Scan() {
 				if fields := strings.SplitN(strings.TrimSuffix(s.Text(), "\n"), ":", 7); len(fields) == 7 && fields[0] == u.Username {
 					return fields[6], true
 				}
 			}
+
 			_ = s.Err() // Ignore errors.
 		}
 	}

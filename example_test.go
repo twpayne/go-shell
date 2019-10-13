@@ -7,7 +7,6 @@ import (
 )
 
 func Example_shell_CurrentUserShell() {
-	shell, ok := shell.CurrentUserShell()
-	_ = ok
+	shell, _ := shell.CurrentUserShell()
 	fmt.Println(shell)
 }

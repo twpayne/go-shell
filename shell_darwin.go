@@ -11,6 +11,7 @@ import (
 
 const defaultShell = "/bin/bash"
 
+//nolint:gochecknoglobals
 var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`)
 
 // CurrentUserShell returns the current user's shell.
@@ -22,6 +23,7 @@ func CurrentUserShell() (string, bool) {
 		}
 
 		// If dscl is available, use it.
+		//nolint:gosec
 		if output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output(); err == nil {
 			if m := dsclUserShellRegexp.FindSubmatch(output); m != nil {
 				return string(m[1]), true
