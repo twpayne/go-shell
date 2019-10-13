@@ -1,4 +1,4 @@
 linters:
   enable-all: true
   disable:
-    - lll
+  - lll
