@@ -1,4 +1,4 @@
-// +build !darwin,!windows
+// +build !darwin,!plan9,!windows
 
 package shell
 
