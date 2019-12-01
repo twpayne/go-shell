@@ -27,7 +27,7 @@ func cgoGetUserShell(name string) (string, bool) {
 			result *C.struct_passwd
 		)
 		//nolint:gocritic,staticcheck
-		rc := C.getpwnam_r(cName, &pwd, (*C.char)(unsafe.Pointer(&buf[0])), C.ulong(buflen), &result)
+		rc := C.getpwnam_r(cName, &pwd, (*C.char)(unsafe.Pointer(&buf[0])), C.size_t(buflen), &result)
 		C.free(unsafe.Pointer(cName))
 
 		switch rc {
