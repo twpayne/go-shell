@@ -4,8 +4,6 @@ import (
 	"os"
 )
 
-const defaultShell = "powershell.exe"
-
 // CurrentUserShell returns the current user's shell.
 func CurrentUserShell() (string, bool) {
 	// If the SHELL environment variable is set, use it.
@@ -19,5 +17,5 @@ func CurrentUserShell() (string, bool) {
 	}
 
 	// Fallback to the default shell.
-	return defaultShell, false
+	return DefaultShell(), false
 }

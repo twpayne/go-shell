@@ -10,8 +10,6 @@ import (
 	"strings"
 )
 
-const defaultShell = "/bin/sh"
-
 // CurrentUserShell returns the current user's shell.
 func CurrentUserShell() (string, bool) {
 	// If the SHELL environment variable is set, use it.
@@ -23,7 +21,7 @@ func CurrentUserShell() (string, bool) {
 	// shell.
 	u, err := user.Current()
 	if err != nil {
-		return defaultShell, false
+		return DefaultShell(), false
 	}
 
 	// If getpwnam_r is available, use it.
@@ -55,5 +53,5 @@ func CurrentUserShell() (string, bool) {
 	}
 
 	// Fallback to the default shell.
-	return defaultShell, false
+	return DefaultShell(), false
 }

@@ -9,8 +9,6 @@ import (
 	"regexp"
 )
 
-const defaultShell = "/bin/bash"
-
 //nolint:gochecknoglobals
 var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`)
 
@@ -25,7 +23,7 @@ func CurrentUserShell() (string, bool) {
 	// shell.
 	u, err := user.Current()
 	if err != nil {
-		return defaultShell, false
+		return DefaultShell(), false
 	}
 
 	// If getpwnam_r is available, use it.
@@ -42,5 +40,5 @@ func CurrentUserShell() (string, bool) {
 	}
 
 	// Fallback to the default shell.
-	return defaultShell, false
+	return DefaultShell(), false
 }
