@@ -26,7 +26,7 @@ func cgoGetUserShell(name string) (string, bool) {
 			buf    = make([]byte, buflen)
 			result *C.struct_passwd
 		)
-		//nolint:gocritic,staticcheck
+		//nolint:gocritic
 		rc := C.getpwnam_r(cName, &pwd, (*C.char)(unsafe.Pointer(&buf[0])), C.size_t(buflen), &result)
 		C.free(unsafe.Pointer(cName))
 
