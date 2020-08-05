@@ -14,7 +14,7 @@ func CurrentUserShell() (string, bool) {
 	if shell, ok := os.LookupEnv("SHELL"); ok {
 		return shell, true
 	}
-	
+
 	// If the ComSpec environment variable is set, use it.
 	if comSpec, ok := os.LookupEnv("ComSpec"); ok {
 		return comSpec, true
