@@ -1,4 +1,4 @@
-//+build cgo,darwin cgo,linux
+// +build cgo,aix cgo,android cgo,darwin cgo,dragonfly cgo,freebsd cgo,illumnos cgo,linux cgo,netbsd cgo,openbsd cgo,solaris
 
 package shell
 
