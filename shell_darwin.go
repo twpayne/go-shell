@@ -1,5 +1,4 @@
 //go:build darwin
-// +build darwin
 
 package shell
 
@@ -10,8 +9,7 @@ import (
 	"regexp"
 )
 
-//nolint:gochecknoglobals
-var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`)
+var dsclUserShellRegexp = regexp.MustCompile(`\AUserShell:\s+(.*?)\s*\z`) //nolint:gochecknoglobals
 
 // CurrentUserShell returns the current user's shell.
 func CurrentUserShell() (string, bool) {
@@ -33,8 +31,7 @@ func CurrentUserShell() (string, bool) {
 	}
 
 	// If dscl is available, use it.
-	//nolint:gosec
-	if output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output(); err == nil {
+	if output, err := exec.Command("dscl", ".", "-read", u.HomeDir, "UserShell").Output(); err == nil { //nolint:gosec
 		if m := dsclUserShellRegexp.FindSubmatch(output); m != nil {
 			return string(m[1]), true
 		}
