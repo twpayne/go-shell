@@ -1,7 +1,8 @@
-//go:build (cgo && aix) || (cgo && android) || (cgo && darwin) || (cgo && dragonfly) || (cgo && freebsd) || (cgo && linux) || (cgo && netbsd) || (cgo && openbsd)
+//go:build (cgo && aix) || (cgo && android) || (cgo && darwin) || (cgo && dragonfly) || (cgo && freebsd) || (cgo && linux) || (cgo && netbsd) || (cgo && openbsd) || (cgo && illumos)
 
 package shell
 
+// #cgo illumos CFLAGS: -D_POSIX_PTHREAD_SEMANTICS=1
 // #include <errno.h>
 // #include <pwd.h>
 // #include <stdlib.h>
