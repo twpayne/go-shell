@@ -1,35 +1,40 @@
+run:
+  go: '1.22'
+
 linters:
   enable:
   - asasalint
   - asciicheck
   - bidichk
   - bodyclose
+  - canonicalheader
   - containedctx
   - contextcheck
+  - copyloopvar
   - decorder
   - dogsled
   - dupl
   - dupword
   - durationcheck
+  - err113
   - errcheck
   - errchkjson
   - errname
   - errorlint
-  - execinquery
   - exhaustive
   - exhaustruct
-  - exportloopref
+  - fatcontext
   - forcetypeassert
   - gci
   - ginkgolinter
   - gocheckcompilerdirectives
   - gochecknoinits
+  - gochecksumtype
   - gocognit
   - goconst
   - gocritic
   - gocyclo
   - godot
-  - goerr113
   - gofmt
   - gofumpt
   - goheader
@@ -43,8 +48,10 @@ linters:
   - govet
   - grouper
   - importas
+  - inamedparam
   - ineffassign
   - interfacebloat
+  - intrange
   - ireturn
   - loggercheck
   - makezero
@@ -59,17 +66,23 @@ linters:
   - nolintlint
   - nonamedreturns
   - nosprintfhostport
+  - perfsprint
   - prealloc
   - predeclared
   - promlinter
+  - protogetter
   - reassign
   - revive
   - rowserrcheck
+  - sloglint
+  - spancheck
   - sqlclosecheck
   - staticcheck
   - stylecheck
   - tagalign
   - tagliatelle
+  - tenv
+  - testifylint
   - thelper
   - tparallel
   - typecheck
@@ -91,6 +104,7 @@ linters:
   - gomnd
   - lll
   - maintidx
+  - mnd
   - nlreturn
   - paralleltest
   - testableexamples
